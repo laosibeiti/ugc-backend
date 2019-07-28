@@ -14,8 +14,8 @@ read input
 imageslist=`docker images`
 var1=`echo $imageslist|awk -F ' ' '{print $9}'`
 case $input in
-1)sudo docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_test:latest
+1)sudo docker tag $var1 registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_test:latest
   sudo docker push registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_test:latest;;
-2)sudo docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_online:latest
+2)sudo docker tag $var1 registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_online:latest
   sudo docker push registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_online:latest;;
 esacs

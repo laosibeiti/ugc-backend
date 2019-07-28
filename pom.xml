@@ -11,10 +11,10 @@
 	</parent>
 	
 	<groupId>top.justdj</groupId>
-	<artifactId>job</artifactId>
+	<artifactId>ugc_backend_test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>job</name>
-	<description>job project</description>
+	<name>ugc_backend_test</name>
+	<description>ugc_backend_test</description>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
