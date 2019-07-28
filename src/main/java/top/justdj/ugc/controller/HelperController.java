@@ -46,7 +46,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@Api(value = "一些通用的接口",tags = "一些通用的接口")
+@Api(value = "一些通用的接口",tags = "一些接口")
 @RequestMapping("/api/universal")
 public class HelperController {
 
