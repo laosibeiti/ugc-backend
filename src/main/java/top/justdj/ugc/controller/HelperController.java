@@ -33,6 +33,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -59,6 +60,13 @@ public class HelperController {
 	@Autowired
 	private PositionInfoService positionInfoService;
 	
+	
+	@GetMapping("/test")
+	Result testMethod () throws Exception{
+		InetAddress address = InetAddress.getLocalHost();
+		return Result.ok(address.getHostAddress()); //返回IP地址
+		
+	}
 	
 	@PostMapping("/upload")
 	@ApiOperation(value = "上传文件用的接口",notes = "上传文件用的接口")
