@@ -4,7 +4,7 @@ echo "开始构建docker镜像"
 mvn package docker:build -Dmaven.test.skip=true
 #上传到docker服务器
 echo "请输入阿里云docker仓库密码"
-docker login --username=13588224627  registry.cn-shanghai.aliyuncs.com
+docker login --username=13588224627  registry-vpc.cn-shanghai.aliyuncs.com
 #请选择上传仓库
 echo "以下是镜像仓库列表"
 echo "1.测试环境"
