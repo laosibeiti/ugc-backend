@@ -2,27 +2,11 @@ server:
    port: 9002
    tomcat:
      uri-encoding: utf-8
-#   ssl:
-#     key-store: classpath:1936241_www.justdj.top.pfx
-#     key-store-password: 05nQyuDQ
-#     key-store-type: PKCS12
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://122.152.193.63:8761/eureka
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
-    appname:  justdj-job
-#    ip-address: 139.199.88.87
 spring:
-#  cloud:
-#    client:
-#      ipaddress: 139.199.88.87
+  profiles:
+    active: dev
   application:
-     name: justdj-job
+     name: justdj-ugc
   main:
     allow-bean-definition-overriding: true
   http:
@@ -36,53 +20,10 @@ spring:
         enabled: true
   messages:
       encoding: UTF-8
-  data:
-      mongodb:
-        uri: mongodb://122.152.193.63:27017/job
-  redis:
-     host: 139.199.88.87
-     port: 6379
-     password:
-     pool:
-        max-active: 8
-        max-wait: 300000
-        max-idle: 8
-        min-idle: 0
-     timeout: 50000
-  mail:
-     host: smtp.163.com
-     username: justdjtop@163.com
-     password: 963852zx
-     default-encoding: UTF-8
-     properties:
-       mail:
-         smtp:
-           auth: true
   jpa:
     show-sql: true
   activemq:
     broker-url: tcp://139.199.88.87:61616
-swagger2:
-  enable: true
-  baseDir: /static
-
-
-
-#阿里云短信配置
-aliyun:
-   sms:
-      accesskey:
-         id: 123
-         secret: 123
-      signname: 123
-      template:
-          code:
-             login: 123
-             password: 123
-   oss:
-       endPiont: http://oss-cn-hangzhou.aliyuncs.com
-       accessKeyId: LTAI7vmBPuYcYiOj
-       accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 logging:
   level:
     org:
@@ -95,10 +36,7 @@ management:
     web:
       exposure:
         include: hystrix.stream
-
 base-path: /
-
-
 hystrix:
   command:
     default:
@@ -110,14 +48,163 @@ hystrix:
 ---
 spring:
    profiles:  dev
-
-
+   data:
+     mongodb:
+       uri: mongodb://dev:dev.asdweffea@47.102.199.98:10001/ugc_dev
+   redis:
+     host: 139.199.88.87
+     port: 6379
+     password:
+     pool:
+       max-active: 8
+       max-wait: 300000
+       max-idle: 8
+       min-idle: 0
+     timeout: 50000
+   mail:
+     host: smtp.163.com
+     username: justdjtop@163.com
+     password: 963852zx
+     default-encoding: UTF-8
+     properties:
+       mail:
+         smtp:
+           auth: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://122.152.193.63:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
+    appname:  justdj-ugc
+#    ip-address: 139.199.88.87
+swagger2:
+  enable: true
+  baseDir: /static
+#阿里云服务配置
+aliyun:
+  sms:
+    accesskey:
+      id: 123
+      secret: 123
+    signname: 123
+    template:
+      code:
+        login: 123
+        password: 123
+  oss:
+    endPiont: http://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI7vmBPuYcYiOj
+    accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 ---
 spring:
    profiles:  test
-
-
+   data:
+     mongodb:
+       uri: mongodb://test:test.as78a@47.102.199.98:10001/ugc_test
+   redis:
+     host: 139.199.88.87
+     port: 6379
+     password:
+     pool:
+       max-active: 8
+       max-wait: 300000
+       max-idle: 8
+       min-idle: 0
+     timeout: 50000
+   mail:
+     host: smtp.163.com
+     username: justdjtop@163.com
+     password: 963852zx
+     default-encoding: UTF-8
+     properties:
+       mail:
+         smtp:
+           auth: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://122.152.193.63:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
+    appname:  justdj-ugc
+#    ip-address: 139.199.88.87
+swagger2:
+  enable: true
+  baseDir: /static
+#阿里云服务配置
+aliyun:
+  sms:
+    accesskey:
+      id: 123
+      secret: 123
+    signname: 123
+    template:
+      code:
+        login: 123
+        password: 123
+  oss:
+    endPiont: http://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI7vmBPuYcYiOj
+    accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 
 ---
 spring:
    profiles:  online
+   data:
+     mongodb:
+       uri: mongodb://online:online.asdwascafea@47.102.199.98:10001/ugc_online
+   redis:
+     host: 139.199.88.87
+     port: 6379
+     password:
+     pool:
+       max-active: 8
+       max-wait: 300000
+       max-idle: 8
+       min-idle: 0
+     timeout: 50000
+   mail:
+     host: smtp.163.com
+     username: justdjtop@163.com
+     password: 963852zx
+     default-encoding: UTF-8
+     properties:
+       mail:
+         smtp:
+           auth: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://122.152.193.63:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
+    appname:  justdj-ugc
+#    ip-address: 139.199.88.87
+swagger2:
+  enable: false
+  baseDir: /static
+#阿里云服务配置
+aliyun:
+  sms:
+    accesskey:
+      id: 123
+      secret: 123
+    signname: 123
+    template:
+      code:
+        login: 123
+        password: 123
+  oss:
+    endPiont: http://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI7vmBPuYcYiOj
+    accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
