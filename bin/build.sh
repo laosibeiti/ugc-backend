@@ -17,5 +17,5 @@ case $input in
 1)sudo docker tag $var1 registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend:latest
   sudo docker push registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend:latest;;
 2)sudo docker tag $var1 registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend:stable
-  sudo docker push registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend:stable;;
-esacs
+  sudo docker push registry.cn-hangzhou.aliyuncs.com/justdj/ugc_backend_online:stable;;
+esac
