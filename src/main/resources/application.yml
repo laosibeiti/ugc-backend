@@ -5,8 +5,6 @@ server:
 spring:
   profiles:
     active: dev
-  application:
-     name: justdj-ugc
   main:
     allow-bean-definition-overriding: true
   http:
@@ -47,6 +45,8 @@ hystrix:
 
 ---
 spring:
+  application:
+    name:  ugc-dev
    profiles:  dev
    data:
      mongodb:
@@ -101,6 +101,8 @@ aliyun:
     accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 ---
 spring:
+  application:
+    name:  ugc-test
    profiles:  test
    data:
      mongodb:
@@ -156,6 +158,8 @@ aliyun:
 
 ---
 spring:
+  application:
+    name:  ugc-online
    profiles:  online
    data:
      mongodb:

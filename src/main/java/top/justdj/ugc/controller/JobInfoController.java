@@ -63,7 +63,6 @@ public  class JobInfoController extends BaseController {
 	@RequiresRoles(value = {"company","admin"},logical = Logical.OR)
 	public Result add(@RequestBody JobInfo jobInfo,
 	                  HttpServletRequest request) {
-		String
 		UserInfo userInfo = getUserInfo(request);
 		jobInfo.setCompanyId(userInfo.getCompanyId());
 		log.info("JobInfoController 新增 jobInfo:{}",jobInfo);
