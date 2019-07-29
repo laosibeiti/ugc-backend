@@ -63,6 +63,7 @@ public  class JobInfoController extends BaseController {
 	@RequiresRoles(value = {"company","admin"},logical = Logical.OR)
 	public Result add(@RequestBody JobInfo jobInfo,
 	                  HttpServletRequest request) {
+		String
 		UserInfo userInfo = getUserInfo(request);
 		jobInfo.setCompanyId(userInfo.getCompanyId());
 		log.info("JobInfoController 新增 jobInfo:{}",jobInfo);
@@ -89,6 +90,10 @@ public  class JobInfoController extends BaseController {
 		 jobInfoService.saveOrUpdate(jobInfo);
 		return Result.ok();
 	}
+	
+	
+	
+	
 	public Result updateFallback(@RequestBody JobInfo jobInfo) {
 		return Result.busy("更新兼职");
 	}

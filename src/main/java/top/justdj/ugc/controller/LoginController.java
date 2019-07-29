@@ -108,7 +108,7 @@ public class LoginController extends BaseController{
     
     
     @ApiOperation("用户注销")
-    @PostMapping("/api/login//out")
+    @PostMapping("/api/login/out")
     public Result logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();

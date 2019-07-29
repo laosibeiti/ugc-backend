@@ -79,7 +79,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
-    appname:  justdj-ugc
+    appname:  ugc-dev
 #    ip-address: 139.199.88.87
 swagger2:
   enable: true
@@ -133,7 +133,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
-    appname:  justdj-ugc
+    appname:  ugc-test
 #    ip-address: 139.199.88.87
 swagger2:
   enable: true
@@ -188,7 +188,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${eureka.instance.appname}:${server.port}
-    appname:  justdj-ugc
+    appname:  ugc-online
 #    ip-address: 139.199.88.87
 swagger2:
   enable: false
