@@ -21,11 +21,11 @@ case $input in
   --image registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0 \
   --update-parallelism 1 \
   --update-delay 10s  ugc_online;;
-2)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4
-  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4
+2)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.5
+  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.5
   echo "online 服务滚动升级"
    docker service update \
-   --image registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4 \
+   --image registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.5 \
    --update-parallelism 1 \
    --update-delay 10s  ugc_online;;
 esac
