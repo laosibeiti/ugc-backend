@@ -45,7 +45,7 @@ hystrix:
 
 ---
 spring:
-  application:
+   application:
     name:  ugc-dev
    profiles:  dev
    data:
@@ -101,7 +101,7 @@ aliyun:
     accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 ---
 spring:
-  application:
+   application:
     name:  ugc-test
    profiles:  test
    data:
@@ -158,7 +158,7 @@ aliyun:
 
 ---
 spring:
-  application:
+   application:
     name:  ugc-online
    profiles:  online
    data:
