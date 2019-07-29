@@ -62,6 +62,7 @@ public class HelperController {
 	
 	
 	@GetMapping("/test")
+	@ApiOperation(value = "测试用的接口",notes = "测试用的接口")
 	Result testMethod () throws Exception{
 		InetAddress address = InetAddress.getLocalHost();
 		return Result.ok(address.getHostAddress()); //返回IP地址
