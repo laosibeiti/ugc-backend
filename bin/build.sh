@@ -14,8 +14,18 @@ read input
 imageslist=`docker images`
 var1=`echo $imageslist|awk -F ' ' '{print $9}'`
 case $input in
-1)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend:latest
-  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend:latest;;
-2)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend:stable
-  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend:stable;;
+1)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0
+  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0
+    echo "test 服务滚动升级"
+  docker service update \
+  --image registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0 \
+  --update-parallelism 1 \
+  --update-delay 10s  ugc_online;;
+2)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4
+  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4
+  echo "online 服务滚动升级"
+   docker service update \
+   --image registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.4 \
+   --update-parallelism 1 \
+   --update-delay 10s  ugc_online;;
 esac

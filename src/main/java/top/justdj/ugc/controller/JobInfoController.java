@@ -89,6 +89,10 @@ public  class JobInfoController extends BaseController {
 		 jobInfoService.saveOrUpdate(jobInfo);
 		return Result.ok();
 	}
+	
+	
+	
+	
 	public Result updateFallback(@RequestBody JobInfo jobInfo) {
 		return Result.busy("更新兼职");
 	}
