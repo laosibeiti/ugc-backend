@@ -8,7 +8,7 @@
 
 package top.justdj.ugc.dao;
 
-import top.justdj.common.entity.OnlineResumeInfo;
+import top.justdj.ugc.common.entity.OnlineResumeInfo;
 import top.justdj.ugc.dao.common.CommonDAO;
 
 /**

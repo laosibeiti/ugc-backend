@@ -1,6 +1,6 @@
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.EvaluationInfo;
+import top.justdj.ugc.common.entity.EvaluationInfo;
 import top.justdj.ugc.service.impl.EvaluationInfoServiceImpl;
 
 import java.util.List;

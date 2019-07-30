@@ -10,8 +10,8 @@ package top.justdj.ugc.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.CompanyInfo;
-import top.justdj.common.entity.dto.CompanySignUpDTO;
+import top.justdj.ugc.common.entity.CompanyInfo;
+import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
 import top.justdj.ugc.config.repository.CompanyInfoRepository;
 import top.justdj.ugc.dao.CompanyInfoDAO;
 import top.justdj.ugc.service.CompanyInfoService;

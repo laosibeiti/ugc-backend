@@ -17,8 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import top.justdj.common.entity.BaseInfo;
-import top.justdj.common.entity.pagefilter.BasePageFilter;
+import top.justdj.ugc.common.entity.BaseInfo;
+import top.justdj.ugc.common.entity.pagefilter.BasePageFilter;
 import top.justdj.ugc.service.CommonService;
 
 import java.util.ArrayList;

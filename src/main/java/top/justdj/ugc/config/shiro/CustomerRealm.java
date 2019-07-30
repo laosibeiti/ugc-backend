@@ -11,8 +11,8 @@ package top.justdj.ugc.config.shiro;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.justdj.common.entity.RoleInfo;
-import top.justdj.common.entity.UserInfo;
+import top.justdj.ugc.common.entity.RoleInfo;
+import top.justdj.ugc.common.entity.UserInfo;
 import top.justdj.ugc.service.RoleInfoService;
 import top.justdj.ugc.service.UserService;
 

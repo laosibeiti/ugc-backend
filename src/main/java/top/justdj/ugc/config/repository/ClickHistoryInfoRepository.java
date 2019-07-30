@@ -2,7 +2,7 @@ package top.justdj.ugc.config.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import top.justdj.common.entity.dto.ClickHistoryInfo;
+import top.justdj.ugc.common.entity.dto.ClickHistoryInfo;
 
 /**
  * Created with IntelliJ IDEA.

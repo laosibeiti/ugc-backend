@@ -8,7 +8,7 @@
 
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.RoleInfo;
+import top.justdj.ugc.common.entity.RoleInfo;
 
 import java.util.List;
 

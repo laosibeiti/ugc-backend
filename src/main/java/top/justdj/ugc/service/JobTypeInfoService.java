@@ -8,8 +8,8 @@
 
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.JobTypeInfo;
-import top.justdj.common.entity.dto.DbSearchResultListId;
+import top.justdj.ugc.common.entity.JobTypeInfo;
+import top.justdj.ugc.common.entity.dto.DbSearchResultListId;
 
 import java.util.List;
 

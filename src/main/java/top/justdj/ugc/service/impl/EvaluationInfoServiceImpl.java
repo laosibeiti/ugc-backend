@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.EvaluationInfo;
+import top.justdj.ugc.common.entity.EvaluationInfo;
 import top.justdj.ugc.config.repository.EvaluationInfoRepository;
 import top.justdj.ugc.dao.EvaluationInfoDAO;
 import top.justdj.ugc.service.EvaluationInfoService;

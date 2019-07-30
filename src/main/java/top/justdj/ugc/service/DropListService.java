@@ -8,8 +8,8 @@
 
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.DropList;
-import top.justdj.common.entity.dto.DropListItemDTO;
+import top.justdj.ugc.common.entity.DropList;
+import top.justdj.ugc.common.entity.dto.DropListItemDTO;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.AppealInfo;
+import top.justdj.ugc.common.entity.AppealInfo;
 import top.justdj.ugc.config.repository.AppealInfoRepository;
 import top.justdj.ugc.dao.AppealInfoDAO;
 import top.justdj.ugc.service.AppealInfoService;

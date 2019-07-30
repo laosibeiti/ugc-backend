@@ -9,9 +9,9 @@
 package top.justdj.ugc.service;
 
 import org.springframework.data.domain.Page;
-import top.justdj.common.entity.JobInfo;
-import top.justdj.common.entity.pagefilter.CompanyJobPageFilter;
-import top.justdj.common.entity.pagefilter.JobPageFilter;
+import top.justdj.ugc.common.entity.JobInfo;
+import top.justdj.ugc.common.entity.pagefilter.CompanyJobPageFilter;
+import top.justdj.ugc.common.entity.pagefilter.JobPageFilter;
 
 import java.util.List;
 

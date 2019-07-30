@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.justdj.common.entity.DropList;
-import top.justdj.common.entity.dto.DropListItemDTO;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.entity.DropList;
+import top.justdj.ugc.common.entity.dto.DropListItemDTO;
+import top.justdj.ugc.common.util.Result;
 import top.justdj.ugc.service.DropListService;
 import top.justdj.ugc.service.RedisService;
 

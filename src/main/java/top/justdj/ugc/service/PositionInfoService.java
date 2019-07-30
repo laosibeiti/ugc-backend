@@ -1,6 +1,6 @@
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.PositionInfo;
+import top.justdj.ugc.common.entity.PositionInfo;
 
 /**
  * Created with IntelliJ IDEA.

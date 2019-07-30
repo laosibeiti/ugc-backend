@@ -11,9 +11,9 @@ package top.justdj.ugc.controller;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.justdj.common.entity.CompanyInfo;
+import top.justdj.ugc.common.entity.CompanyInfo;
 import top.justdj.ugc.config.shiro.JwtHelper;
-import top.justdj.common.entity.UserInfo;
+import top.justdj.ugc.common.entity.UserInfo;
 import top.justdj.ugc.service.CompanyInfoService;
 import top.justdj.ugc.service.UserService;
 

@@ -9,7 +9,7 @@
 package top.justdj.ugc.service.impl;
 
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.dto.ClickHistoryInfo;
+import top.justdj.ugc.common.entity.dto.ClickHistoryInfo;
 import top.justdj.ugc.config.repository.ClickHistoryInfoRepository;
 import top.justdj.ugc.service.ClickHistoryInfoService;
 

@@ -17,8 +17,8 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.justdj.common.entity.CompanyInfo;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.entity.CompanyInfo;
+import top.justdj.ugc.common.util.Result;
 import top.justdj.ugc.service.CompanyInfoService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -10,7 +10,7 @@ package top.justdj.ugc.dao.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.JobTypeInfo;
+import top.justdj.ugc.common.entity.JobTypeInfo;
 import top.justdj.ugc.dao.JobTypeInfoDAO;
 import top.justdj.ugc.dao.common.AbstractCommonDAOImpl;
 

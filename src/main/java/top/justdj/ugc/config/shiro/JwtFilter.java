@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.springframework.web.bind.annotation.RequestMethod;
-import top.justdj.common.exception.TokenException;
+import top.justdj.ugc.common.exception.TokenException;
 import top.justdj.ugc.util.ResponseUtil;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.util.Result;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

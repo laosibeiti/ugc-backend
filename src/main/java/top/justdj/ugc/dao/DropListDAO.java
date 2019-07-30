@@ -1,6 +1,6 @@
 package top.justdj.ugc.dao;
 
-import top.justdj.common.entity.DropList;
+import top.justdj.ugc.common.entity.DropList;
 import top.justdj.ugc.dao.common.CommonDAO;
 
 /**

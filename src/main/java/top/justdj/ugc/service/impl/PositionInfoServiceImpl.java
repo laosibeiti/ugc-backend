@@ -10,7 +10,7 @@ package top.justdj.ugc.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.PositionInfo;
+import top.justdj.ugc.common.entity.PositionInfo;
 import top.justdj.ugc.config.repository.PositionInfoRepository;
 import top.justdj.ugc.dao.PositionInfoDAO;
 import top.justdj.ugc.service.PositionInfoService;

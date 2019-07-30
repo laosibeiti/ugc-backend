@@ -1,7 +1,7 @@
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.CompanyInfo;
-import top.justdj.common.entity.dto.CompanySignUpDTO;
+import top.justdj.ugc.common.entity.CompanyInfo;
+import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
 
 /**
  * Created with IntelliJ IDEA.

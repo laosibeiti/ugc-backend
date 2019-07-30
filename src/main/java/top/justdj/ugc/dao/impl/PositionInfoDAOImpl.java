@@ -9,7 +9,7 @@
 package top.justdj.ugc.dao.impl;
 
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.PositionInfo;
+import top.justdj.ugc.common.entity.PositionInfo;
 import top.justdj.ugc.dao.PositionInfoDAO;
 import top.justdj.ugc.dao.common.AbstractCommonDAOImpl;
 

@@ -9,7 +9,7 @@
 package top.justdj.ugc.dao.impl;
 
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.JobInfo;
+import top.justdj.ugc.common.entity.JobInfo;
 import top.justdj.ugc.dao.JobInfoDAO;
 import top.justdj.ugc.dao.common.AbstractCommonDAOImpl;
 

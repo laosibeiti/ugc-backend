@@ -1,6 +1,6 @@
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.dto.ClickHistoryInfo;
+import top.justdj.ugc.common.entity.dto.ClickHistoryInfo;
 
 /**
  * Created with IntelliJ IDEA.

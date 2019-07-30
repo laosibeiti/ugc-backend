@@ -8,7 +8,7 @@
 
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.AppealInfo;
+import top.justdj.ugc.common.entity.AppealInfo;
 
 /**
  * Created with IntelliJ IDEA.

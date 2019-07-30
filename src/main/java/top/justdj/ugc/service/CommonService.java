@@ -1,7 +1,7 @@
 package top.justdj.ugc.service;
 
 import org.springframework.data.domain.Page;
-import top.justdj.common.entity.pagefilter.BasePageFilter;
+import top.justdj.ugc.common.entity.pagefilter.BasePageFilter;
 
 import java.util.List;
 

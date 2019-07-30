@@ -1,6 +1,6 @@
 package top.justdj.ugc.service;
 
-import top.justdj.common.entity.OnlineResumeInfo;
+import top.justdj.ugc.common.entity.OnlineResumeInfo;
 
 /**
  * Created with IntelliJ IDEA.

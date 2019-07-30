@@ -10,7 +10,7 @@ package top.justdj.ugc.config.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import top.justdj.common.entity.CompanyInfo;
+import top.justdj.ugc.common.entity.CompanyInfo;
 
 /**
  * Created with IntelliJ IDEA.

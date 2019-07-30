@@ -10,10 +10,10 @@ package top.justdj.ugc.service;
 
 
 import org.springframework.data.domain.Page;
-import top.justdj.common.entity.UserInfo;
-import top.justdj.common.entity.dto.CompanySignUpDTO;
-import top.justdj.common.entity.dto.PersonSignUpDTO;
-import top.justdj.common.entity.pagefilter.UserManagerPageFilter;
+import top.justdj.ugc.common.entity.UserInfo;
+import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
+import top.justdj.ugc.common.entity.dto.PersonSignUpDTO;
+import top.justdj.ugc.common.entity.pagefilter.UserManagerPageFilter;
 
 public interface UserService extends CommonService<UserInfo> {
 

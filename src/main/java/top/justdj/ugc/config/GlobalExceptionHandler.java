@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import top.justdj.common.constant.ErrorConstant;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.constant.ErrorConstant;
+import top.justdj.ugc.common.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;

@@ -20,11 +20,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import top.justdj.common.constant.PositionConstant;
-import top.justdj.common.entity.JobTypeInfo;
-import top.justdj.common.entity.PositionInfo;
+import top.justdj.ugc.common.constant.PositionConstant;
+import top.justdj.ugc.common.entity.JobTypeInfo;
+import top.justdj.ugc.common.entity.PositionInfo;
 import top.justdj.ugc.service.FileManagerService;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.util.Result;
 import top.justdj.ugc.service.JobTypeInfoService;
 import top.justdj.ugc.service.PositionInfoService;
 

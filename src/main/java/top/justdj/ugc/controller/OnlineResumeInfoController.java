@@ -15,9 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.justdj.common.entity.OnlineResumeInfo;
-import top.justdj.common.entity.UserInfo;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.entity.OnlineResumeInfo;
+import top.justdj.ugc.common.entity.UserInfo;
+import top.justdj.ugc.common.util.Result;
 import top.justdj.ugc.service.OnlineResumeInfoService;
 import top.justdj.ugc.service.UserService;
 

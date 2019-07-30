@@ -10,7 +10,7 @@ package top.justdj.ugc.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.justdj.common.entity.OnlineResumeInfo;
+import top.justdj.ugc.common.entity.OnlineResumeInfo;
 import top.justdj.ugc.config.repository.OnlineResumeInfoRepository;
 import top.justdj.ugc.dao.OnlineResumeInfoDAO;
 import top.justdj.ugc.service.OnlineResumeInfoService;

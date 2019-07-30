@@ -18,11 +18,11 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import  top.justdj.common.constant.UserStatusConstant;
-import top.justdj.common.exception.AccountDeleteException;
-import top.justdj.common.exception.AccountExpireException;
-import top.justdj.common.exception.ForbidLoginException;
-import top.justdj.common.entity.UserInfo;
+import  top.justdj.ugc.common.constant.UserStatusConstant;
+import top.justdj.ugc.common.exception.AccountDeleteException;
+import top.justdj.ugc.common.exception.AccountExpireException;
+import top.justdj.ugc.common.exception.ForbidLoginException;
+import top.justdj.ugc.common.entity.UserInfo;
 import top.justdj.ugc.service.UserService;
 
 import java.util.HashSet;

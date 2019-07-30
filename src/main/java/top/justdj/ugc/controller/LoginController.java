@@ -17,18 +17,18 @@ import org.apache.shiro.subject.Subject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.justdj.common.entity.*;
-import top.justdj.common.entity.dto.CodeIdentify;
-import top.justdj.common.entity.dto.CompanySignUpDTO;
-import top.justdj.common.entity.dto.PersonSignUpDTO;
+import top.justdj.ugc.common.entity.*;
+import top.justdj.ugc.common.entity.dto.CodeIdentify;
+import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
+import top.justdj.ugc.common.entity.dto.PersonSignUpDTO;
 import top.justdj.ugc.config.shiro.JwtHelper;
-import top.justdj.common.constant.ErrorConstant;
-import top.justdj.common.exception.AccountDeleteException;
-import top.justdj.common.exception.ForbidLoginException;
-import top.justdj.common.exception.AccountExpireException;
+import top.justdj.ugc.common.constant.ErrorConstant;
+import top.justdj.ugc.common.exception.AccountDeleteException;
+import top.justdj.ugc.common.exception.ForbidLoginException;
+import top.justdj.ugc.common.exception.AccountExpireException;
 import top.justdj.ugc.service.*;
 import top.justdj.ugc.util.Md5Utils;
-import top.justdj.common.util.Result;
+import top.justdj.ugc.common.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
