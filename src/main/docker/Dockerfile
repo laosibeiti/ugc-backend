@@ -1,4 +1,4 @@
 FROM java:8
 VOLUME /tmp
 ADD job-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar","--spring.profiles.active=online"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=online"]

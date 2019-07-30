@@ -45,13 +45,13 @@ hystrix:
 
 ---
 spring:
-   application:
-    name:  ugc-dev
-   profiles:  dev
-   data:
+  profiles:  dev
+  application:
+     name:  ugc-dev
+  data:
      mongodb:
        uri: mongodb://dev:dev.asdweffea@47.102.199.98:10001/ugc_dev
-   redis:
+  redis:
      host: 139.199.88.87
      port: 6379
      password:
@@ -61,7 +61,7 @@ spring:
        max-idle: 8
        min-idle: 0
      timeout: 50000
-   mail:
+  mail:
      host: smtp.163.com
      username: justdjtop@163.com
      password: 963852zx
@@ -101,13 +101,13 @@ aliyun:
     accessKeySecret: ZAvxOCDAnpH5ibhXqv3MjYlg369DPE
 ---
 spring:
-   application:
+  profiles:  test
+  application:
     name:  ugc-test
-   profiles:  test
-   data:
+  data:
      mongodb:
        uri: mongodb://test:test.as78a@47.102.199.98:10001/ugc_test
-   redis:
+  redis:
      host: 139.199.88.87
      port: 6379
      password:
@@ -117,7 +117,7 @@ spring:
        max-idle: 8
        min-idle: 0
      timeout: 50000
-   mail:
+  mail:
      host: smtp.163.com
      username: justdjtop@163.com
      password: 963852zx
@@ -158,13 +158,13 @@ aliyun:
 
 ---
 spring:
-   application:
-    name:  ugc-online
-   profiles:  online
-   data:
+  profiles:  online
+  application:
+     name:  ugc-online
+  data:
      mongodb:
        uri: mongodb://online:online.asdwascafea@47.102.199.98:10001/ugc_online
-   redis:
+  redis:
      host: 139.199.88.87
      port: 6379
      password:
@@ -174,7 +174,7 @@ spring:
        max-idle: 8
        min-idle: 0
      timeout: 50000
-   mail:
+  mail:
      host: smtp.163.com
      username: justdjtop@163.com
      password: 963852zx
