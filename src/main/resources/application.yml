@@ -3,6 +3,8 @@ server:
    tomcat:
      uri-encoding: utf-8
 spring:
+  profiles:
+    active: online
   application:
      name:  ugc-dev
   main:
