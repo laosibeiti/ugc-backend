@@ -15,7 +15,7 @@ imageslist=`docker images`
 var1=`echo $imageslist|awk -F ' ' '{print $9}'`
 case $input in
 1)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0
-  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0
+  sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_test:1.0.0;;
 2)sudo docker tag $var1  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.5
   sudo docker push  registry-vpc.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.5
   echo "online 服务滚动升级"
