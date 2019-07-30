@@ -20,8 +20,8 @@ spring:
       encoding: UTF-8
   jpa:
     show-sql: true
-  activemq:
-    broker-url: tcp://139.199.88.87:61616
+#  activemq:
+#    broker-url: tcp://139.199.88.87:61616
 logging:
   level:
     org:
