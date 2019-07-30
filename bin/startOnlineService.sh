@@ -7,4 +7,4 @@ docker service create --name ugc_online \
 --endpoint-mode vip \
 -p 9002:9002 \
 --replicas 3 \
-registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.6
+registry.cn-shanghai.aliyuncs.com/justdj/ugc_backend_online:1.0.8
