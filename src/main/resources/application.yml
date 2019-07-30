@@ -4,7 +4,7 @@ server:
     uri-encoding: utf-8
 spring:
   profiles:
-    active: online
+    active: dev
   main:
     allow-bean-definition-overriding: true
   http:
