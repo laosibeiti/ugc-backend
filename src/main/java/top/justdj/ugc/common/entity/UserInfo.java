@@ -25,7 +25,7 @@ import java.util.List;
 @Document(collection = "user_info")
 public class UserInfo extends BaseInfo {
 	
-	@ApiModelProperty(value = "学号/工号",required = true,example = "2015210405049")
+	@ApiModelProperty(value = "工号",required = true,example = "2015210405049")
 	private String code;
 	
 	@ApiModelProperty(value = "姓名",required = true,example = "justdj")

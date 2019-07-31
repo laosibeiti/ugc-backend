@@ -8,6 +8,7 @@
 
 package top.justdj.ugc.config.shiro;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -86,7 +87,6 @@ public abstract class AbstractUserRealm extends AuthorizingRealm {
 		//UsernamePasswordToken对象用来存放提交的登录信息
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 		//查出是否有此用户
-		
 		UserInfo user = userService.selectByEmail(token.getUsername());
 		if (user != null) {
 			if (UserStatusConstant.STOP.getCode().equals(user.getUserStatus())){

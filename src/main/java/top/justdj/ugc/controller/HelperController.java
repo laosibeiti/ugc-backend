@@ -17,17 +17,20 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.justdj.ugc.common.constant.PositionConstant;
 import top.justdj.ugc.common.entity.JobTypeInfo;
 import top.justdj.ugc.common.entity.PositionInfo;
-import top.justdj.ugc.service.FileManagerService;
+import top.justdj.ugc.common.entity.UserInfo;
+import top.justdj.ugc.service.*;
 import top.justdj.ugc.common.util.Result;
-import top.justdj.ugc.service.JobTypeInfoService;
-import top.justdj.ugc.service.PositionInfoService;
+import top.justdj.ugc.util.Md5Utils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -48,7 +51,7 @@ import java.util.List;
 @RestController
 @Api(value = "一些通用的接口",tags = "一些接口")
 @RequestMapping("/api/universal")
-public class HelperController {
+public class HelperController extends BaseController{
 
 	
 	@Autowired
@@ -60,14 +63,50 @@ public class HelperController {
 	@Autowired
 	private PositionInfoService positionInfoService;
 	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RedisService redisService;
+	
+	
+	@GetMapping("/insertDataToRedis")
+	@ApiOperation("插入数据到redis")
+	
 	
 	@GetMapping("/test")
 	@ApiOperation(value = "测试用的接口",notes = "测试用的接口")
-	Result testMethod () throws Exception{
+	Result testMethod (HttpServletRequest request) throws Exception{
+		JSONObject jsonObject = new JSONObject();
 		InetAddress address = InetAddress.getLocalHost();
-		return Result.ok(address.getHostAddress()); //返回IP地址
+		jsonObject.put("服务器地址 ",address.getHostAddress());
+		Subject subject = SecurityUtils.getSubject();
+		if (subject == null){
+			jsonObject.put("用户状态 ","没有获取到session");
+		}else {
+			jsonObject.put("sessionId",subject.getSession());
+			jsonObject.put("用户状态 ","获取到session");
+			jsonObject.put("user",getUserInfo(request));
+		}
+		
+		return Result.ok(jsonObject); //返回IP地址
 		
 	}
+	
+	@GetMapping("/insertUser")
+	@ApiOperation(value = "插入新的用户",notes = "插入新的用户")
+	Result insertUser() throws Exception{
+		UserInfo userInfo = new UserInfo();
+		userInfo.setName("万凯");
+		userInfo.setSalt(Md5Utils.generateSalt());
+		userInfo.setPassword(Md5Utils.encryption("123456",userInfo.getSalt()));
+		userInfo.setEmail("977878634@qq.com");
+		userService.save(userInfo);
+		return Result.ok(userInfo);
+		
+	}
+	
+	
 	
 	@PostMapping("/upload")
 	@ApiOperation(value = "上传文件用的接口",notes = "上传文件用的接口")

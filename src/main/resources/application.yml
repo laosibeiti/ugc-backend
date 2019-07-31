@@ -53,8 +53,8 @@ spring:
       uri: mongodb://dev:dev.asdweffea@47.102.199.98:10001/ugc_dev
   redis:
     host: 139.199.88.87
-    port: 6379
-    password:
+    port: 7001
+    password: .ukEESEufet6f76
     pool:
       max-active: 8
       max-wait: 300000
@@ -109,8 +109,8 @@ spring:
       uri: mongodb://test:test.as78a@47.102.199.98:10001/ugc_test
   redis:
     host: 139.199.88.87
-    port: 6379
-    password:
+    port: 7001
+    password: .ukEESEufet6f76
     pool:
       max-active: 8
       max-wait: 300000
@@ -166,8 +166,8 @@ spring:
       uri: mongodb://online:online.asdwascafea@47.102.199.98:10001/ugc_online
   redis:
     host: 139.199.88.87
-    port: 6379
-    password:
+    port: 7001
+    password: .ukEESEufet6f76
     pool:
       max-active: 8
       max-wait: 300000

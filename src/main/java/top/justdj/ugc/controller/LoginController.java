@@ -59,7 +59,7 @@ public class LoginController extends BaseController{
     @ApiOperation("用户登录")
     @PostMapping("/api/login/in")
     @HystrixCommand(fallbackMethod = "loginFallback")
-    public Result login(@Valid @RequestBody Authentication authentication) {
+    public Result login(@Valid Authentication authentication) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(authentication.getEmail(), authentication.getPassword());
         try {
