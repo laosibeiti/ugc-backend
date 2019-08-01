@@ -88,7 +88,6 @@ public class UserController extends BaseController{
 	@HystrixCommand(fallbackMethod = "getUserFallback")
 	Result<UserInfo> getUser(@PathVariable String id){
 		UserInfo userInfo = userService.getById(id);
-		userInfo.setPassword(getUserCompany(userInfo.getCompanyId()).getCompanyName());
 		return Result.ok(userInfo);
 	}
 	Result<UserInfo> getUserFallback(@PathVariable String id){
@@ -101,9 +100,6 @@ public class UserController extends BaseController{
 	@HystrixCommand(fallbackMethod = "getUerGroupFallback")
 	Result<List<UserInfo>> getUerGroup(@RequestBody List<String> idsList){
 		List<UserInfo> list = userService.getByIndIn(idsList);
-		list.forEach( a -> {
-			a.setPassword(getUserCompany(a.getCompanyId()).getCompanyName());
-		});
 		return Result.ok(list);
 	}
 	Result<List<UserInfo>> getUerGroupFallback(@RequestBody List<String> idsList){

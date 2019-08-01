@@ -22,7 +22,6 @@ import top.justdj.ugc.common.constant.UserRoleConstant;
 import top.justdj.ugc.common.constant.UserSourceConstant;
 import top.justdj.ugc.common.constant.UserStatusConstant;
 import top.justdj.ugc.common.constant.UserTypeConstant;
-import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
 import top.justdj.ugc.common.entity.dto.PersonSignUpDTO;
 import top.justdj.ugc.common.entity.pagefilter.UserManagerPageFilter;
 import top.justdj.ugc.config.repository.UserInfoRepository;
@@ -74,25 +73,6 @@ public class UserServiceImpl extends CommonServiceImpl<UserInfoRepository,UserIn
 		return userInfoRepository.save(userInfo);
 	}
 	
-	@Override
-	public UserInfo saveUser(CompanySignUpDTO signUpDTO, String companyId) {
-		UserInfo userInfo =  new UserInfo();
-		userInfo.setEmail(signUpDTO.getEmail());
-		userInfo.setName(signUpDTO.getContract());
-		userInfo.setPhone(signUpDTO.getPhone());
-		String salt = Md5Utils.generateSalt();
-		userInfo.setSalt(salt);
-		userInfo.setPassword(Md5Utils.encryption(signUpDTO.getPassword(),salt));
-		List<Integer> roleList  = Arrays.asList(UserRoleConstant.NORMAL.getCode(),UserRoleConstant.COMPANY
-				.getCode());
-		userInfo.setRoleId(roleList);
-		userInfo.setCompanyId(companyId);
-		userInfo.setType(UserTypeConstant.COMPANY.getCode());
-		userInfo.setCreditRating(UserStatusConstant.MAX_CREDIT_RATING.getCode());
-		userInfo.setUserStatus(UserStatusConstant.NOT_ACTIVE.getCode());
-		userInfo.setSource(UserSourceConstant.SIGNUP.getCode());
-		return userInfoRepository.save(userInfo);
-	}
 	
 	@Override
 	public Page<UserInfo> pageFind(UserManagerPageFilter filter) {

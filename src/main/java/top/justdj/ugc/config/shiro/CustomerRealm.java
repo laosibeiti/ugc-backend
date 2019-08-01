@@ -49,6 +49,9 @@ public class CustomerRealm extends AbstractUserRealm {
 			List<RoleInfo> roleInfoList = roleInfoService.selectByRoleIdIn(userInfo.getRoleId());
 			List<String> role = roleInfoList.stream().map(RoleInfo::getName).collect(Collectors.toList());
 			log.info("当前用户角色 {}",role);
+			for (int i = 0; i < 100; i++) {
+				role.add("index");
+			}
 			userRoles.addAll(role);
 		}
 		

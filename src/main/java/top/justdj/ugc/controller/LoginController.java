@@ -19,19 +19,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.justdj.ugc.common.entity.*;
 import top.justdj.ugc.common.entity.dto.CodeIdentify;
-import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
 import top.justdj.ugc.common.entity.dto.PersonSignUpDTO;
 import top.justdj.ugc.config.shiro.JwtHelper;
 import top.justdj.ugc.common.constant.ErrorConstant;
 import top.justdj.ugc.common.exception.AccountDeleteException;
 import top.justdj.ugc.common.exception.ForbidLoginException;
 import top.justdj.ugc.common.exception.AccountExpireException;
+import top.justdj.ugc.config.shiro.redis.MyRedisSessionDao;
+import top.justdj.ugc.config.shiro.redis.ShiroRedisCache;
 import top.justdj.ugc.service.*;
 import top.justdj.ugc.util.Md5Utils;
 import top.justdj.ugc.common.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -50,8 +53,9 @@ public class LoginController extends BaseController{
     @Autowired
     private RedisService redisService;
     
-    @Autowired
-    private CompanyInfoService companyInfoService;
+    
+    
+    Long ALIVE_TIME = 60 * 60L;
     
 //    @Autowired
 //    private MailService mailService;
@@ -63,10 +67,26 @@ public class LoginController extends BaseController{
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(authentication.getEmail(), authentication.getPassword());
         try {
-            
             subject.login(token);
             //创建token
             UserInfo userInfo = userService.selectByEmail(authentication.getEmail());
+            //创建登录信息
+            if ( redisService.hasKey("LOGIN_SESSION:" + userInfo.getEmail())){
+                String sessionId = redisService.get("LOGIN_SESSION:" + userInfo.getEmail());
+                if (!subject.getSession().getId().equals(sessionId)){
+                    log.info("不同机器登录");
+                    redisService.deleteBatch("*" + sessionId);
+                    redisService.deleteBatch("*" + userInfo.getEmail());
+                    redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
+                }else {
+                    //二次登陆 不必处理
+                    log.info("二次登陆 不必处理");
+                }
+            }else {
+                //不存在 新建
+                log.info("第一次登陆");
+                redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
+            }
             userInfo.setPassword(authentication.getPassword());
             Object jwt = JwtHelper.createJWT(userInfo);
             JSONObject result = new JSONObject();
@@ -133,54 +153,6 @@ public class LoginController extends BaseController{
         }
     }
     
-    
-    @ApiOperation("公司注册")
-    @PostMapping("/api/login/register/company")
-    public Result companyRegister(@RequestBody @Valid CompanySignUpDTO signUpDTO){
-        // TODO: 19.3.3 如果真实使用的话 我感觉这里应该再次验证一下验证码
-        log.info("注册数据 {}", JSON.toJSONString(signUpDTO));
-        if (ObjectUtils.allNotNull(userService.selectByEmail(signUpDTO.getEmail()))){
-            return Result.error(ErrorConstant.ACCOUNT_ALREADY_EXIT.getCode(),ErrorConstant.ACCOUNT_ALREADY_EXIT.getMsg());
-        }else {
-            userService.saveUser(signUpDTO,   companyInfoService.saveCompany(signUpDTO).getId());
-            Authentication authentication = new Authentication();
-            authentication.setEmail(signUpDTO.getEmail());
-            authentication.setPassword(signUpDTO.getPassword());
-            return login(authentication);
-        }
-    }
-    
-    
-//    @ApiOperation("忘记密码")
-//    @PostMapping("/forget")
-//    public Result forgerPassword(@RequestBody Email e) {
-//        String email=e.getEmail();
-//        if (email==null || email.equals("")) {
-//            return Result.error("邮箱不能为空");
-//        }
-//        User user = userService.getUserByEmail(email);
-//        if (user==null) {
-//            return Result.error("用户不存在");
-//        }
-//        Mail mail=new Mail();
-//        Integer code = CacheUtils.generaterCode();
-//        CacheUtils.saveCode(user.getUsername(),code);
-//        mail.setSubject("验证码");
-//        mail.setText("欢迎使用新大新ERP系统，您的验证码是:"+String.valueOf(code));
-//        mail.setTo(user.getEmail());
-//        mailService.sendSimpleMail(mail);
-//        return Result.ok(new SimpleUser(user.getId(),user.getUsername(),user.getEmail()));
-//    }
-//    @ApiOperation("/验证码验证")
-//    @PostMapping("/code")
-//    public Result checkCode(@RequestBody CheckCode checkCode) {
-//        if (CacheUtils.verify(checkCode.getUsername(),checkCode.getCode())){
-//            return Result.ok("验证成功");
-//        }
-//        CacheUtils.remove(checkCode.getUsername());
-//        return Result.ok("验证失败");
-//    }
-//
     @ApiOperation("/修改密码")
     @PatchMapping("/tApi/login/changePassword")
     public Result resetPassword(@RequestBody ChangePassword changePassword,

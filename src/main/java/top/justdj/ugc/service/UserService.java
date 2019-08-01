@@ -11,7 +11,6 @@ package top.justdj.ugc.service;
 
 import org.springframework.data.domain.Page;
 import top.justdj.ugc.common.entity.UserInfo;
-import top.justdj.ugc.common.entity.dto.CompanySignUpDTO;
 import top.justdj.ugc.common.entity.dto.PersonSignUpDTO;
 import top.justdj.ugc.common.entity.pagefilter.UserManagerPageFilter;
 
@@ -24,7 +23,7 @@ public interface UserService extends CommonService<UserInfo> {
 	UserInfo saveUser(PersonSignUpDTO signUpDTO);
 	
 	
-	UserInfo saveUser(CompanySignUpDTO signUpDTO, String companyId);
+
 	
 	/**
 	 * 用户管理分页查询

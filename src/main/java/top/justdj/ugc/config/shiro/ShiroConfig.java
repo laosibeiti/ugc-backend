@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -49,6 +50,8 @@ public class ShiroConfig {
 	@Autowired
 	private RedisTemplate<String, ?> redisTemplate;
 	
+
+	
 	
 	/**
 	 * 复制
@@ -56,8 +59,7 @@ public class ShiroConfig {
 	 * @return
 	 */
 	@Bean(name = "myShiroRealm")
-	@DependsOn(value = {"" +
-			"lifecycleBeanPostProcessor", "ShiroRedisCacheManager"})
+	@DependsOn(value = {"lifecycleBeanPostProcessor", "ShiroRedisCacheManager"})
 	public CustomerRealm myShiroRealm(RedisTemplate redisTemplate) {
 		CustomerRealm shiroRealm = new CustomerRealm();
 		//设置缓存管理器
@@ -81,7 +83,7 @@ public class ShiroConfig {
 	 */
 	@Bean(name = "ShiroRedisCacheManager")
 	public ShiroRedisCacheManager redisCacheManager(RedisTemplate redisTemplate) {
-		ShiroRedisCacheManager redisCacheManager = new ShiroRedisCacheManager();
+		ShiroRedisCacheManager redisCacheManager = new ShiroRedisCacheManager(redisTemplate);
 		//name是key的前缀，可以设置任何值，无影响，可以设置带项目特色的值
 		redisCacheManager.createCache("shiro_redis");
 		return redisCacheManager;
@@ -209,7 +211,8 @@ public class ShiroConfig {
 //		filterMap.put("/api/**","cors");
 		filterMap.put("/api/universal/**","anon");
 		filterMap.put("/api/login/**", "anon");
-		filterMap.put("/tApi/**", "jwt");
+		filterMap.put("/**","authc");
+		filterMap.put("/**", "jwt");
 		shiroFilter.setFilterChainDefinitionMap(filterMap);
 		// 判断token是否存在
 //		filters.put("cors",new CorsFilter());

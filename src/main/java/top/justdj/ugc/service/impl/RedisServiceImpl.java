@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @Author  123
  */
 @Slf4j
-@Service
+@Service(value = "redisService")
 public class RedisServiceImpl implements RedisService {
     
     @Autowired
@@ -87,6 +87,20 @@ public class RedisServiceImpl implements RedisService {
     }
     
     @Override
+    public List <String> keyList(String key) {
+        List<String> keys = redisTemplate.execute((RedisCallback<List<String>>) connection -> {
+            RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+            Set<byte[]> keys1 = connection.keys(serializer.serialize(key));
+            List<String> temp = new ArrayList<>();
+            for (byte[] a:keys1) {
+                temp.add(new String(a));
+            }
+           return temp;
+        });
+        return keys;
+    }
+    
+    @Override
     public boolean delete(String key) {
         try {
             redisTemplate.delete(key);
@@ -96,5 +110,23 @@ public class RedisServiceImpl implements RedisService {
             return false;
         }
     }
-
+    
+    @Override
+    public boolean deleteBatch(String regx) {
+        List<String> keys = keyList(regx);
+        log.info("redis 批量删除 regx:{}   keys:{}",regx,keys);
+        redisTemplate.delete(keys);
+        return true;
+    }
+    
+    @Override
+    public void clearAll(String pattern) {
+        redisTemplate.keys(pattern);
+    }
+    
+    
+    @Override
+    public Boolean hasKey(String key) {
+        return redisTemplate.hasKey(key);
+    }
 }

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import top.justdj.ugc.common.entity.CompanyInfo;
 import top.justdj.ugc.config.shiro.JwtHelper;
 import top.justdj.ugc.common.entity.UserInfo;
-import top.justdj.ugc.service.CompanyInfoService;
 import top.justdj.ugc.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +23,7 @@ public class BaseController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private CompanyInfoService companyInfoService;
+
 	
 	protected UserInfo getUserInfo(HttpServletRequest request) {
 		String token = request.getHeader("token");
@@ -38,13 +36,5 @@ public class BaseController {
 		return getUserInfo(request);
 	}
 	
-	protected CompanyInfo getUserCompany(String companyId){
-		CompanyInfo companyInfo = companyInfoService.getById(companyId);
-		if (null == companyInfo){
-			return new CompanyInfo();
-		}else {
-			return companyInfo;
-		}
-	}
 	
 }

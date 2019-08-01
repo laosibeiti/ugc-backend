@@ -21,5 +21,13 @@ public interface RedisService {
      
      public List<String> keys(String key);
      
+     List<String> keyList(String key);
+     
      boolean delete(String key);
+     
+     boolean deleteBatch(String regx);
+     
+     public void clearAll(String pattern);
+     
+     Boolean hasKey(String key);
 }

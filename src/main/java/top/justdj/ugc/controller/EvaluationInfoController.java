@@ -22,7 +22,6 @@ import top.justdj.ugc.common.entity.UserInfo;
 import top.justdj.ugc.common.entity.dto.ClickHistoryInfo;
 import top.justdj.ugc.common.entity.pagefilter.BasePageFilter;
 import top.justdj.ugc.common.util.Result;
-import top.justdj.ugc.service.CompanyInfoService;
 import top.justdj.ugc.service.EvaluationInfoService;
 import top.justdj.ugc.service.impl.EvaluationInfoServiceImpl;
 
@@ -47,8 +46,7 @@ public class EvaluationInfoController extends BaseController{
 	@Autowired
 	private EvaluationInfoService evaluationInfoService;
 	
-	@Autowired
-	private CompanyInfoService companyInfoService;
+
 	
 	@ApiOperation("新增评价信息")
 	@PostMapping("/tApi/evaluationInfo/")
@@ -61,11 +59,7 @@ public class EvaluationInfoController extends BaseController{
 		// 重新计算公司评分
 		List<EvaluationInfoServiceImpl.ScoreResult> list = evaluationInfoService.getAvgScore(evaluationInfo.getCompanyId
 				());
-		if (!CollectionUtils.isEmpty(list)){
-			CompanyInfo companyInfo = companyInfoService.getById(list.get(0).getId());
-			companyInfo.setScore(list.get(0).getScore());
-			companyInfoService.saveOrUpdate(companyInfo);
-		}
+
 		return Result.ok();
 	}
 	public Result addFallback(@RequestBody EvaluationInfo evaluationInfo,
