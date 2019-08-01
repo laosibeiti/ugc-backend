@@ -63,7 +63,7 @@ public class LoginController extends BaseController{
     @ApiOperation("用户登录")
     @PostMapping("/api/login/in")
     @HystrixCommand(fallbackMethod = "loginFallback")
-    public Result login(@Valid Authentication authentication) {
+    public Result login(@Valid @RequestBody Authentication authentication) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(authentication.getEmail(), authentication.getPassword());
         try {
@@ -87,9 +87,10 @@ public class LoginController extends BaseController{
                 log.info("第一次登陆");
                 redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
             }
+            
+            JSONObject result = new JSONObject();
             userInfo.setPassword(authentication.getPassword());
             Object jwt = JwtHelper.createJWT(userInfo);
-            JSONObject result = new JSONObject();
             result.put("t",jwt);
             userInfo.setPassword("");
             userInfo.setSalt("");

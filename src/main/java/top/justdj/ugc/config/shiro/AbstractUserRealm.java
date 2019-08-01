@@ -74,7 +74,8 @@ public abstract class AbstractUserRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		authorizationInfo.addRoles(userRoles);
 		authorizationInfo.addStringPermissions(userPermissions);
-		log.info("###【获取角色成功】[SessionId] => {}", SecurityUtils.getSubject().getSession().getId());
+		log.info("###【获取角色成功】[SessionId] => {} ，role=> {},permission=>{}",
+				SecurityUtils.getSubject().getSession().getId(),userRoles,userPermissions);
 		return authorizationInfo;
 	}
 	

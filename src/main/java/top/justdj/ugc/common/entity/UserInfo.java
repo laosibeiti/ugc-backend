@@ -31,7 +31,6 @@ public class UserInfo extends BaseInfo {
 	@ApiModelProperty(value = "姓名",required = true,example = "justdj")
 	private String name;
 	
-	
 	@ApiModelProperty(value = "手机号",required = true,example = "135882228")
 	@NotBlank(message = "手机号不能为空")
 	private String phone;
@@ -57,11 +56,11 @@ public class UserInfo extends BaseInfo {
 	@ApiModelProperty("加密密码的盐")
 	private String salt;
 	
-	@ApiModelProperty(value = "角色（0借伞人 1志愿者 2管理员）",required = true,example = "1")
-	private List<Integer> roleId;
+	@ApiModelProperty(value = "角色id",required = true,example = "1")
+	private List<String> roleId;
 	
-	@ApiModelProperty("用户类型 0用户 1企业 2学校")
-	private Integer type;
+//	@ApiModelProperty("用户类型 0用户 1企业 2学校")
+//	private Integer type;
 	
 	@ApiModelProperty("信用等级 ; 总分100分 扣一分")
 	private Integer creditRating = 100;
@@ -76,20 +75,6 @@ public class UserInfo extends BaseInfo {
 	@ApiModelProperty("用户状态 0账号停用 1账号过期 2账号正常 3账号删除 4未认证企业账户")
 	private Integer userStatus = 2;
 	
-	@ApiModelProperty("用户来源 0数据库手动添加 1微信扫码 2批量导入")
-	private Integer source = -1;
-	
-	
-	@ApiModelProperty("在线简历id")
-	private String onlineResumeInfoId;
-	
-	
-	@ApiModelProperty("自己上传的简历地址")
-	private String resumeUrl;
-	
-	
-	@ApiModelProperty("收藏的兼职id")
-	private List<String> jobId =  new ArrayList <>();
 	
 }
 

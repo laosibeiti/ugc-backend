@@ -73,7 +73,7 @@ public class HelperController extends BaseController{
 	
 	@GetMapping("/insertDataToRedis")
 	@ApiOperation("插入数据到redis")
-	@RequiresRoles("index")
+	@RequiresRoles("admin")
 	Result inserDataToRedis(){
 		
 		redisService.setAndExpire("test","qewqeq",60 * 1000);

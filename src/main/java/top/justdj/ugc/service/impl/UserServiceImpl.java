@@ -63,13 +63,9 @@ public class UserServiceImpl extends CommonServiceImpl<UserInfoRepository,UserIn
 		String salt = Md5Utils.generateSalt();
 		userInfo.setSalt(salt);
 		userInfo.setPassword(Md5Utils.encryption(signUpDTO.getPassword(),salt));
-		List<Integer> roleList  = Arrays.asList(UserRoleConstant.NORMAL.getCode());
-		userInfo.setRoleId(roleList);
 		userInfo.setCompanyId("");
-		userInfo.setType(UserTypeConstant.NORMAL.getCode());
 		userInfo.setCreditRating(UserStatusConstant.MAX_CREDIT_RATING.getCode());
 		userInfo.setUserStatus(UserStatusConstant.NORMAL.getCode());
-		userInfo.setSource(UserSourceConstant.SIGNUP.getCode());
 		return userInfoRepository.save(userInfo);
 	}
 	

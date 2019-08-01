@@ -46,21 +46,6 @@ public class UserController extends BaseController{
 	}
 	
 	
-	@PatchMapping("/tApi/user/resumeUrl")
-	@ApiOperation("用户修改简历url")
-	@HystrixCommand(fallbackMethod = "updateResumeUrlFallback")
-	public Result updateResumeUrl(@RequestBody String url,
-	                            HttpServletRequest request){
-		UserInfo userInfo = getLatestUserInfo(request);
-		userInfo.setResumeUrl(url);
-		userService.saveOrUpdate(userInfo);
-		return Result.ok();
-	}
-	public Result updateResumeUrlFallback(@RequestBody String url,
-	                              HttpServletRequest request){
-		return Result.busy("用户修改简历");
-	}
-	
 	
 	
 	@PostMapping("/tApi/user/pageFind")

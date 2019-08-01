@@ -22,6 +22,6 @@ import java.util.List;
  */
 public interface RoleInfoService {
 	
-	List<RoleInfo> selectByRoleIdIn(List<Integer> roleIdList);
+	List<RoleInfo> selectByRoleIdIn(List<String> roleIdList);
 	
 }

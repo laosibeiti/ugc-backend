@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -27,12 +29,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "role_info")
 public class RoleInfo extends BaseInfo {
 	
-	@ApiModelProperty("角色id")
-	private Integer roleId;
-	
 	@ApiModelProperty("角色名")
 	private String name;
 	
-	@ApiModelProperty("描诉")
+	@ApiModelProperty("角色编码")
+	private String code;
+	
+	@ApiModelProperty("角色描诉")
 	private String desc;
+	
+	@ApiModelProperty("模组列表")
+	private List<String> moduleIdList;
+	
+	@ApiModelProperty("具体模组操作权限")
+	private List<String> modulePermission;
 }

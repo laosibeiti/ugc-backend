@@ -18,6 +18,6 @@ import java.util.List;
 public interface RoleInfoRepository extends MongoRepository<RoleInfo,String> {
 	
 	
-	List<RoleInfo> getByRoleIdIn(List<Integer> roleIdList);
+	List<RoleInfo> getByIdIn(List<String> roleIdList);
 	
 }

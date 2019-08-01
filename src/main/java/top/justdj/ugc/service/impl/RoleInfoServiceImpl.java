@@ -36,7 +36,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
 	
 	
 	@Override
-	public List<RoleInfo> selectByRoleIdIn(List <Integer> roleIdList) {
-		return roleInfoRepository.getByRoleIdIn(roleIdList);
+	public List<RoleInfo> selectByRoleIdIn(List <String> roleIdList) {
+		return roleInfoRepository.getByIdIn(roleIdList);
 	}
 }

@@ -9,6 +9,7 @@
 package top.justdj.ugc.config.shiro;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.justdj.ugc.common.entity.RoleInfo;
@@ -16,6 +17,7 @@ import top.justdj.ugc.common.entity.UserInfo;
 import top.justdj.ugc.service.RoleInfoService;
 import top.justdj.ugc.service.UserService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,15 +48,17 @@ public class CustomerRealm extends AbstractUserRealm {
 		Set<String> userPermissions = new HashSet<>();
 		//TODO 获取当前用户下拥有的所有角色列表,及权限
 		if (ObjectUtils.allNotNull(userInfo)){
+			//获取角色列表
 			List<RoleInfo> roleInfoList = roleInfoService.selectByRoleIdIn(userInfo.getRoleId());
-			List<String> role = roleInfoList.stream().map(RoleInfo::getName).collect(Collectors.toList());
-			log.info("当前用户角色 {}",role);
-			for (int i = 0; i < 100; i++) {
-				role.add("index");
+			if (!CollectionUtils.isEmpty(roleInfoList)){
+				//角色不为空的时候
+				userRoles.addAll(roleInfoList.stream().map(RoleInfo::getCode).collect(Collectors.toList()));
+				//权限
+				for (RoleInfo roleInfo: roleInfoList){
+					userPermissions.addAll(roleInfo.getModulePermission());
+				}
 			}
-			userRoles.addAll(role);
 		}
-		
 		return new UserRolesAndPermissions(userRoles, userPermissions);
 	}
 	
