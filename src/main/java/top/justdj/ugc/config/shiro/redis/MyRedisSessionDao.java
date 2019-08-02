@@ -1,6 +1,7 @@
 package top.justdj.ugc.config.shiro.redis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
@@ -31,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class MyRedisSessionDao extends EnterpriseCacheSessionDAO {
-	private Long EXPIRE_TIME = 30 * 60L;
+	private Long EXPIRE_TIME = 10 * 60 * 60L;
 	public final static String USER_SHIRO_SESSION = "user_session:";
 	
 	
@@ -51,7 +52,7 @@ public class MyRedisSessionDao extends EnterpriseCacheSessionDAO {
 	@Override
 	protected Serializable doCreate(Session session) {
 		Serializable sessionId = super.doCreate(session);
-		log.info("新建session {} ",session);
+		log.error("新建session {} ",session);
 		setAndExpire(getKey(session),SerializeUtils.serialize(session),EXPIRE_TIME);
 		return sessionId;
 	}
@@ -168,9 +169,11 @@ public class MyRedisSessionDao extends EnterpriseCacheSessionDAO {
 	}
 	
 	private boolean setAndExpire(final String key, final String value, final long expire) {
-		if (!hasKey(key)){
+		if (CollectionUtils.isEmpty(getKeys(key))){
 			setData(key, value);
 			expire(key, expire);
+		}else {
+			log.info("dao key {} 已存在 不再重复设置",key);
 		}
 		return  true;
 	}

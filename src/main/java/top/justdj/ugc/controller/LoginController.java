@@ -66,52 +66,54 @@ public class LoginController extends BaseController{
     public Result login(@Valid @RequestBody Authentication authentication) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(authentication.getEmail(), authentication.getPassword());
-        try {
-            subject.login(token);
-            //创建token
-            UserInfo userInfo = userService.selectByEmail(authentication.getEmail());
-            //创建登录信息
-            if ( redisService.hasKey("LOGIN_SESSION:" + userInfo.getEmail())){
-                String sessionId = redisService.get("LOGIN_SESSION:" + userInfo.getEmail());
-                if (!subject.getSession().getId().equals(sessionId)){
-                    log.info("不同机器登录");
-                    redisService.deleteBatch("*" + sessionId);
-                    redisService.deleteBatch("*" + userInfo.getEmail());
-                    redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
+        UserInfo userInfo = userService.selectByEmail(authentication.getEmail());
+        //判断是否登陆过
+        if (!subject.isAuthenticated()){
+            try {
+                subject.login(token);
+                //创建登录信息
+                if ( redisService.hasKey("LOGIN_SESSION:" + userInfo.getEmail())){
+                    String sessionId = redisService.get("LOGIN_SESSION:" + userInfo.getEmail());
+                    if (!subject.getSession().getId().equals(sessionId)){
+                        log.info("不同机器登录");
+                        redisService.deleteBatch("*" + sessionId);
+                        redisService.deleteBatch("*" + userInfo.getEmail());
+                        redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
+                    }else {
+                        //二次登陆 不必处理
+                        log.info("二次登陆 不必处理");
+                    }
                 }else {
-                    //二次登陆 不必处理
-                    log.info("二次登陆 不必处理");
+                    //不存在 新建
+                    log.info("第一次登陆");
+                    redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
                 }
-            }else {
-                //不存在 新建
-                log.info("第一次登陆");
-                redisService.setAndExpire("LOGIN_SESSION:" + userInfo.getEmail(),subject.getSession().getId().toString(), ALIVE_TIME);
+                
+            } catch (UnknownAccountException e) {
+                //账户不存在
+                return Result.error(ErrorConstant.USER_NOT_EXIST.getCode(),ErrorConstant.USER_NOT_EXIST.getMsg());
+            }catch (ForbidLoginException e){
+                return Result.error(ErrorConstant.ACCOUNT_STOP.getCode(),ErrorConstant.ACCOUNT_STOP.getMsg());
             }
-            
-            JSONObject result = new JSONObject();
-            userInfo.setPassword(authentication.getPassword());
-            Object jwt = JwtHelper.createJWT(userInfo);
-            result.put("t",jwt);
-            userInfo.setPassword("");
-            userInfo.setSalt("");
-            userInfo.setCreditRating(null);
-            result.put("u",userInfo);
-            return Result.ok(result);
-        } catch (UnknownAccountException e) {
-            //账户不存在
-            return Result.error(ErrorConstant.USER_NOT_EXIST.getCode(),ErrorConstant.USER_NOT_EXIST.getMsg());
-        }catch (ForbidLoginException e){
-            return Result.error(ErrorConstant.ACCOUNT_STOP.getCode(),ErrorConstant.ACCOUNT_STOP.getMsg());
+            catch (AccountExpireException e){
+                return Result.error(ErrorConstant.ACCOUNT_EXPIRE.getCode(),ErrorConstant.ACCOUNT_EXPIRE.getMsg());
+            }
+            catch (AccountDeleteException e){
+                return Result.error(ErrorConstant.ACCOUNT_DELETE.getCode(),ErrorConstant.ACCOUNT_DELETE.getMsg());
+            }
+            catch (IncorrectCredentialsException e) {
+                return Result.error(ErrorConstant.PASSWORD_ERROR.getCode(),ErrorConstant.PASSWORD_ERROR.getMsg());
+            }
         }
-        catch (AccountExpireException e){
-            return Result.error(ErrorConstant.ACCOUNT_EXPIRE.getCode(),ErrorConstant.ACCOUNT_EXPIRE.getMsg());
-        }
-        catch (AccountDeleteException e){
-            return Result.error(ErrorConstant.ACCOUNT_DELETE.getCode(),ErrorConstant.ACCOUNT_DELETE.getMsg());
-        }
-        catch (IncorrectCredentialsException e) {
-            return Result.error(ErrorConstant.PASSWORD_ERROR.getCode(),ErrorConstant.PASSWORD_ERROR.getMsg());
-        }
+        JSONObject result = new JSONObject();
+        userInfo.setPassword(authentication.getPassword());
+        Object jwt = JwtHelper.createJWT(userInfo);
+        result.put("t",jwt);
+        userInfo.setPassword("");
+        userInfo.setSalt("");
+        userInfo.setCreditRating(null);
+        result.put("u",userInfo);
+        return Result.ok(result);
     }
     
     public Result loginFallback( Authentication authentication) {

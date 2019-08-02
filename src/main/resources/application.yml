@@ -51,10 +51,14 @@ spring:
   data:
     mongodb:
       uri: mongodb://dev:dev.asdweffea@47.102.199.98:10001/ugc_dev
+#  redis:
+#    host: 139.199.88.87
+#    port: 7001
+#    password: .ukEESEufet6f76
   redis:
-    host: 139.199.88.87
-    port: 7001
-    password: .ukEESEufet6f76
+    host: 127.0.0.1
+    port: 6379
+    password:
     pool:
       max-active: 8
       max-wait: 300000

@@ -2,6 +2,7 @@ package top.justdj.ugc.config.shiro.redis;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.session.Session;
@@ -53,9 +54,6 @@ public class ShiroRedisCache<K,V> implements Cache <K,V> {
 		}
 		try {
 			V temp = (V)SerializeUtils.deSerialization(getData(getCacheKey(key)), new SimpleSession());
-			if (temp != null){
-				log.error("shiro Cache get 调用后缀 {}", JSON.toJSONString(((SimpleSession)temp).getAttributes()));
-			}
 			log.info("shiro Cache get 调用结果 {}       {}",temp.toString(),SerializeUtils.serialize(temp));
 			return temp ;
 		}catch (Exception e){
@@ -167,11 +165,14 @@ public class ShiroRedisCache<K,V> implements Cache <K,V> {
 	}
 	
 	private boolean expire(final String key, long expire) {
-		return redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+		redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+		return true;
 	}
 	
 	private boolean setAndExpire(final String key, final String value, final long expire) {
-		if (!hasKey(key)){
+		if (!CollectionUtils.isEmpty(getKeys(key))){
+			log.info("key {} 已存，不再重复设置",key);
+		}else {
 			setData(key, value);
 			expire(key, expire);
 		}
@@ -179,7 +180,9 @@ public class ShiroRedisCache<K,V> implements Cache <K,V> {
 	}
 	
 	private Boolean hasKey(String key) {
-		return redisTemplate.hasKey(key);
+		Boolean temp = redisTemplate.hasKey(key);
+		log.info("查询key是否存在 key:{}   result:{}",key,temp);
+		return temp;
 	}
 
 }

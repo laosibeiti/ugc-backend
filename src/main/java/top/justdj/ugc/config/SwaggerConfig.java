@@ -39,6 +39,7 @@ public class SwaggerConfig {
     //自定义异常信息
     ArrayList<ResponseMessage> responseMessages = new ArrayList<ResponseMessage>() {{
         add(new ResponseMessageBuilder().code(-1).message("操作失败").build());
+        add(new ResponseMessageBuilder().code(2).message("Token或权限问题").build());
         add(new ResponseMessageBuilder().code(200).message("操作成功").build());
         add(new ResponseMessageBuilder().code(400).message("请求参数错误").build());
 //        add(new ResponseMessageBuilder().code(401).message("权限认证失败").responseModel(new ModelRef("Error")).build());

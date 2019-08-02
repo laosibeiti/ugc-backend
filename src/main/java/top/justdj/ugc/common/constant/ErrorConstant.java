@@ -53,6 +53,8 @@ public enum  ErrorConstant {
     
     UNKNOWN_ERROR(500, "未知异常 请联系dj"),
     
+    NO_PERMISSION(2,"没有该接口的访问权限"),
+    
     UMBRELLA_NOT_RETURN(-1,"当前用户有伞未归还");
     
 

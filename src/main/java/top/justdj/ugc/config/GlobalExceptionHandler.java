@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({AuthorizationException.class})
     @ResponseBody
     public Result handleException(Exception e){
-        return Result.error("您没有权限");
+        return Result.noPermission();
     }
     
 

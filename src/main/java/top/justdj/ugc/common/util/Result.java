@@ -51,8 +51,8 @@ public class Result<T> implements Serializable {
 	 * 基础成功提示
 	 * @return
 	 */
-	public static top.justdj.ugc.common.util.Result ok() {
-		return new top.justdj.ugc.common.util.Result();
+	public static  Result ok() {
+		return new  Result();
 	}
 	
 	/**
@@ -61,15 +61,15 @@ public class Result<T> implements Serializable {
 	 * @param msg 提示信息
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> ok(String msg) {
-		top.justdj.ugc.common.util.Result <T> r = new top.justdj.ugc.common.util.Result <>();
+	public static <T>  Result <T> ok(String msg) {
+		 Result <T> r = new  Result <>();
 		r.setMsg(msg);
 		log.info("操作成功 {}", JSON.toJSONString(r));
 		return r;
 	}
 	
-	public static<T> top.justdj.ugc.common.util.Result loginOk(T t) {
-		top.justdj.ugc.common.util.Result <T> r = new top.justdj.ugc.common.util.Result <>();
+	public static<T>  Result loginOk(T t) {
+		 Result <T> r = new  Result <>();
 		r.setData(t);
 		log.info("登录成功 {}", JSON.toJSONString(r));
 		return r;
@@ -81,8 +81,8 @@ public class Result<T> implements Serializable {
 	 * @param obj data
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> ok(T obj) {
-		top.justdj.ugc.common.util.Result <T> r = new top.justdj.ugc.common.util.Result <>();
+	public static <T>  Result <T> ok(T obj) {
+		 Result <T> r = new  Result <>();
 		r.setData(obj);
 		log.info("数据请求成功 {}", JSON.toJSONString(r));
 		return r;
@@ -94,7 +94,7 @@ public class Result<T> implements Serializable {
 	 *
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> error() {
+	public static <T>  Result <T> error() {
 		log.info("未知错误 ");
 		return error(ErrorConstant.UNKNOWN_ERROR.getCode(), ErrorConstant
 				.UNKNOWN_ERROR.getMsg());
@@ -106,19 +106,30 @@ public class Result<T> implements Serializable {
 	 * @param msg 提示信息
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> error(String msg) {
+	public static <T>  Result <T> error(String msg) {
 		return error(-1, msg);
 	}
 	
 	
 	/**
-	 * 错误提示
+	 * 没有token
 	 *
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> noToken() {
+	public static <T>  Result <T> noToken() {
 		return error(ErrorConstant.NO_TOKEN.getCode(), ErrorConstant.NO_TOKEN.getMsg());
 	}
+	
+	
+	/**
+	 * 没有权限
+	 *
+	 * @return
+	 */
+	public static <T>  Result <T> noPermission() {
+		return error(ErrorConstant.NO_PERMISSION.getCode(), ErrorConstant.NO_PERMISSION.getMsg());
+	}
+	
 	
 	
 	/**
@@ -126,7 +137,7 @@ public class Result<T> implements Serializable {
 	 *
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> tokenExpire() {
+	public static <T>  Result <T> tokenExpire() {
 		return error(ErrorConstant.TOKEN_EXPIRE.getCode(), ErrorConstant
 				.TOKEN_EXPIRE.getMsg());
 	}
@@ -138,8 +149,8 @@ public class Result<T> implements Serializable {
 	 * @param msg  提示信息
 	 * @return
 	 */
-	public static <T> top.justdj.ugc.common.util.Result <T> error(int code, String msg) {
-		top.justdj.ugc.common.util.Result <T> r = new top.justdj.ugc.common.util.Result <>();
+	public static <T>  Result <T> error(int code, String msg) {
+		 Result <T> r = new  Result <>();
 		r.setMsg(msg);
 		r.setCode(code);
 		r.setData(null);
@@ -149,8 +160,8 @@ public class Result<T> implements Serializable {
 	
 	
 	
-	public static <T> top.justdj.ugc.common.util.Result <T> busy(String item) {
-		top.justdj.ugc.common.util.Result <T> r = new top.justdj.ugc.common.util.Result <>();
+	public static <T>  Result <T> busy(String item) {
+		 Result <T> r = new  Result <>();
 		r.setMsg(item + "服务忙,请稍后重试.");
 		r.setCode(1);
 		r.setData(null);
