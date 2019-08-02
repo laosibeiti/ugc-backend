@@ -76,6 +76,9 @@ public class UserInfo extends BaseInfo {
 	private Integer userStatus = 2;
 	
 	
+	@ApiModelProperty("上次登录时间")
+	private Long lastLoginTime;
+	
 }
 
 //String,openId,微信ID;

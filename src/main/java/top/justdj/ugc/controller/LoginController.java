@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -34,7 +35,10 @@ import top.justdj.ugc.common.util.Result;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -67,7 +71,7 @@ public class LoginController extends BaseController{
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(authentication.getEmail(), authentication.getPassword());
         UserInfo userInfo = userService.selectByEmail(authentication.getEmail());
-        //判断是否登陆过
+        //判断是否登陆过 没有的话就登登录
         if (!subject.isAuthenticated()){
             try {
                 subject.login(token);
@@ -105,6 +109,27 @@ public class LoginController extends BaseController{
                 return Result.error(ErrorConstant.PASSWORD_ERROR.getCode(),ErrorConstant.PASSWORD_ERROR.getMsg());
             }
         }
+        //更新最新登陆时间
+        userInfo.setLastLoginTime(System.currentTimeMillis());
+        userService.saveOrUpdate(userInfo);
+        //查询权限信息
+        Set <String> moduleId = new HashSet <>();
+        Set<String> userPermissions = new HashSet <>() ;
+        //TODO 获取当前用户下拥有的所有角色列表,及权限
+        if (ObjectUtils.allNotNull(userInfo)) {
+            //获取角色列表
+            List <RoleInfo> roleInfoList = roleInfoService.selectByRoleIdIn(userInfo.getRoleId());
+            if (!CollectionUtils.isEmpty(roleInfoList)) {
+                //角色不为空的时候
+	            for (RoleInfo roleInfo : roleInfoList) {
+		            moduleId.addAll(roleInfo.getModuleIdList());
+	            }
+                //权限
+                for (RoleInfo roleInfo : roleInfoList) {
+                    userPermissions.addAll(roleInfo.getModulePermission());
+                }
+            }
+        }
         JSONObject result = new JSONObject();
         userInfo.setPassword(authentication.getPassword());
         Object jwt = JwtHelper.createJWT(userInfo);
@@ -113,6 +138,8 @@ public class LoginController extends BaseController{
         userInfo.setSalt("");
         userInfo.setCreditRating(null);
         result.put("u",userInfo);
+        result.put("m",moduleId);
+        result.put("p",userPermissions);
         return Result.ok(result);
     }
     

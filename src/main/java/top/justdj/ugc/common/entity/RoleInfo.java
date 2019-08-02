@@ -43,4 +43,7 @@ public class RoleInfo extends BaseInfo {
 	
 	@ApiModelProperty("具体模组操作权限")
 	private List<String> modulePermission;
+	
+	@ApiModelProperty("是否可编辑")
+	private Boolean editAble;
 }
