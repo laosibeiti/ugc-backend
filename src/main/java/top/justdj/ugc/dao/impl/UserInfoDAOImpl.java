@@ -29,6 +29,7 @@ public class UserInfoDAOImpl extends AbstractCommonDAOImpl<UserInfo>
 	
 	public UserInfoDAOImpl(){
 		super.setCOLLECTION();
+		
 	}
 	
 }
