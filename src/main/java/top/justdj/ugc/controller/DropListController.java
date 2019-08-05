@@ -35,7 +35,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("")
+@RequestMapping("/")
 @Api(value = "下拉列表管理相关的接口",tags = "下拉列表管理相关的接口")
 public class DropListController {
 	

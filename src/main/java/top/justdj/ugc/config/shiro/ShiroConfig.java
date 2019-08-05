@@ -211,6 +211,7 @@ public class ShiroConfig {
 //		filterMap.put("/api/**","cors");
 		filterMap.put("/api/universal/**","anon");
 		filterMap.put("/api/login/**", "anon");
+		filterMap.put("/api/drop/one/**", "anon");
 		filterMap.put("/**","authc");
 		filterMap.put("/**", "jwt");
 		shiroFilter.setFilterChainDefinitionMap(filterMap);
