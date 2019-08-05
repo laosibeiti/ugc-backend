@@ -162,6 +162,12 @@ public class LoginController extends BaseController{
     public Result logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        if (ObjectUtils.allNotNull(subject)) {
+            String sessionId = subject.getSession().getId().toString();
+            redisService.deleteBatch("*" + sessionId);
+        }
+       
+       
         return Result.ok("注销成功");
     }
     
